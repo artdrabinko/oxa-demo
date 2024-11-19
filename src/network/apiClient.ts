@@ -5,6 +5,7 @@ const API_HOST = import.meta.env.VITE_API_HOST;
 
 const apiClient = axios.create({
   baseURL: API_HOST,
+  timeout: 20000, // Timeout set to 20 seconds (in milliseconds)
 });
 
 apiClient.interceptors.request.use(
