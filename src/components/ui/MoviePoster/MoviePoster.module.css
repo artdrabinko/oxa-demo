@@ -1,3 +1,13 @@
+.container {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
 .poster {
   border-radius: 8px;
   width: 300px;

@@ -28,6 +28,12 @@
   object-fit: cover;
 }
 
+.icon {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+}
+
 .title {
   position: absolute;
   bottom: 0;

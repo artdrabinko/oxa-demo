@@ -3,11 +3,13 @@ import cn from "clsx";
 import { FocusableElement, useFocusable } from "@/core/focus";
 import { ID } from "@/types";
 import styles from "./Card.module.css";
+import { StarIcon } from "@/components/icons";
 
 interface Props {
   id: ID;
   title: string;
   posterUrl: string;
+  isFavorite?: boolean;
   onFocus: (card: FocusableElement, props: any) => void;
   onEnterPress: (props: CardPressEvent) => void;
   onBlur?: (card: FocusableElement, props: any) => void;
@@ -21,6 +23,7 @@ export const Card: React.FC<Props> = ({
   id,
   title,
   posterUrl,
+  isFavorite = false,
   onFocus,
   onBlur,
   onEnterPress,
@@ -56,6 +59,12 @@ export const Card: React.FC<Props> = ({
 
   return (
     <div ref={ref} className={cardClasses} onClick={onClickHandler}>
+      {isFavorite ? (
+        <div className={styles.icon}>
+          <StarIcon />{" "}
+        </div>
+      ) : null}
+
       <img className={styles.poster} src={posterUrl} alt={title} />
 
       <div className={styles.title}>{title}</div>

@@ -23,6 +23,7 @@ export const Details: React.FC = () => {
         <MoviePoster
           url={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
           alt={movie.title}
+          isFavorite={isFavorite}
         />
 
         <div className={styles.meta}>

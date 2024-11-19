@@ -1,29 +1,26 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { ID, RootState } from "@/types";
 
-const global = (state: RootState) => state.global;
+const root = (state: RootState) => state.root;
 
-export const selectMovies = createSelector(
-  global,
-  (state) => state.movies.items
-);
+export const selectMovies = createSelector(root, (state) => state.movies.items);
 
 export const selectMoviesLoading = createSelector(
-  global,
+  root,
   (state) => state.movies.loading
 );
 
 export const selectMoviesError = createSelector(
-  global,
+  root,
   (state) => state.movies.error
 );
 
 export const selectMoviesFilter = createSelector(
-  global,
+  root,
   (state) => state.movies.filter
 );
 
-export const selectFavorites = (state: RootState) => state.global.favorites;
+export const selectFavorites = (state: RootState) => state.root.favorites;
 
 export const isMovieFavorite = (movieId: ID) =>
   createSelector(selectFavorites, (favorites) =>

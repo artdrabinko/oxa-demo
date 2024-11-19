@@ -1,6 +1,6 @@
-import { Home, Details } from "../pages";
 import { createBrowserRouter } from "react-router-dom";
-import { ID } from "../types";
+import { ID } from "@/types";
+import { Home, Details } from "@/pages";
 
 export const routes = {
   home: {

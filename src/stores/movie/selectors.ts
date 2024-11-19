@@ -1,16 +1,16 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/types";
 
-const global = (state: RootState) => state.global;
+const root = (state: RootState) => state.root;
 
-export const selectMovie = createSelector(global, (state) => state.movie.item);
+export const selectMovie = createSelector(root, (state) => state.movie.item);
 
 export const selectMovieLoading = createSelector(
-  global,
+  root,
   (state) => state.movie.loading
 );
 
 export const selectMovieError = createSelector(
-  global,
+  root,
   (state) => state.movie.error
 );

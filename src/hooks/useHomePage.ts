@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from ".";
-import { fetchMoviesAction } from "@/stores/global-slice";
+import { fetchMoviesAction } from "@/stores/root-slice";
 import {
   selectMovies,
   selectMoviesError,

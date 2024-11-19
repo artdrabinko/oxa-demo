@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { keyboardService } from "../services";
-import { Keycodes } from "../core/constants";
+import { keyboardService } from "@/services";
+import { Keycodes } from "@/core/constants";
 
 export const useNavigateBack = () => {
   const navigate = useNavigate();

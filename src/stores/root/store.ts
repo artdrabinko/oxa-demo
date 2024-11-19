@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 
-import globalReducer from "../global-slice";
+import rootReducer from "../root-slice";
 import saga from "../saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const rootStore = configureStore({
   reducer: {
-    global: globalReducer,
+    root: rootReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

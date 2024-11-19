@@ -1,4 +1,4 @@
-import { Keycodes } from "../types";
+import { Keycodes } from "@/types";
 
 export const keycodes: Keycodes = {
   KEY_0: 48,

@@ -6,6 +6,8 @@ import { useFocusable } from "@/core/focus";
 import { FocusKeys } from "@/core/constants";
 import { links } from "@/core/links";
 import { routes } from "@/router";
+import { useAppSelector } from "@/hooks";
+import { selectFavorites } from "@/stores/movies/selectors";
 import { pageScrollService } from "@/services";
 import { Card } from "@/components/ui";
 import styles from "./Grid.module.css";
@@ -24,6 +26,8 @@ export const Grid: React.FC<Props> = ({ items }) => {
 
   const navigation = useNavigate();
 
+  const favorites = useAppSelector(selectFavorites);
+
   const onCardFocusHandler = useCallback((element: FocusableElement) => {
     pageScrollService.onFocusHandler(element);
   }, []);
@@ -40,17 +44,23 @@ export const Grid: React.FC<Props> = ({ items }) => {
     <FocusProvider value={focusKey}>
       <section ref={ref} className={styles.grid}>
         <div className={styles.items}>
-          {items.map((movie) => (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              posterUrl={links.moviePoster(movie.poster_path)}
-              onFocus={onCardFocusHandler}
-              onEnterPress={onPressMovie}
-              onBlur={() => {}}
-            />
-          ))}
+          {items.map((movie) => {
+            // Check if the movie is a favorite
+            const isFavorite = favorites.some((fav) => fav.id == movie.id);
+
+            return (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                isFavorite={isFavorite}
+                posterUrl={links.moviePoster(movie.poster_path)}
+                onFocus={onCardFocusHandler}
+                onEnterPress={onPressMovie}
+                onBlur={() => {}}
+              />
+            );
+          })}
         </div>
       </section>
     </FocusProvider>

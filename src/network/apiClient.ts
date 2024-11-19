@@ -3,12 +3,10 @@ import axios, { InternalAxiosRequestConfig, AxiosError } from "axios";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_HOST = import.meta.env.VITE_API_HOST;
 
-// Create an Axios instance
 const apiClient = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: API_HOST,
 });
 
-// Add a request interceptor
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     if (config.url) {

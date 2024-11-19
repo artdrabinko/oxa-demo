@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Filter, ID, Movie } from "@/types";
 import { MovieService } from "@/services";
 
-interface GlobalSlice {
+interface RootSlice {
   movies: {
     loading: boolean;
     items: Movie[];
@@ -17,7 +17,7 @@ interface GlobalSlice {
   favorites: Movie[];
 }
 
-const initialState: GlobalSlice = {
+const initialState: RootSlice = {
   movies: {
     loading: false,
     items: [],
@@ -32,8 +32,8 @@ const initialState: GlobalSlice = {
   favorites: MovieService.getFavorites(),
 };
 
-export const globalSlice = createSlice({
-  name: "global",
+export const rootSlice = createSlice({
+  name: "root",
   initialState,
   reducers: {
     fetchMoviesAction(state) {
@@ -87,6 +87,6 @@ export const {
   fetchMovieAction,
   fetchMovieSuccessAction,
   fetchMovieFailureAction,
-} = globalSlice.actions;
+} = rootSlice.actions;
 
-export default globalSlice.reducer;
+export default rootSlice.reducer;

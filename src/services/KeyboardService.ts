@@ -1,4 +1,4 @@
-import { keycodes } from "../platform/web";
+import { keycodes } from "@/platform/web";
 
 function setLayerHandler(obj: any, path: any[], value: any) {
   const key = path.pop();

@@ -1,5 +1,5 @@
-import { FocusableElement } from "../core/focus";
-import { translate } from "../core/utils";
+import { FocusableElement } from "@/core/focus";
+import { translate } from "@/core/utils";
 
 export class PageScrollService {
   private scrollElement: HTMLElement | null;

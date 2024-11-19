@@ -3,7 +3,7 @@ import { Filter, Page } from "@/types";
 import { FocusProvider, FocusHandler, useFocusable } from "@/core/focus";
 import { FocusKeys } from "@/core/constants";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setMoviesFilterAction } from "@/stores/global-slice";
+import { setMoviesFilterAction } from "@/stores/root-slice";
 import { selectMoviesFilter } from "@/stores/movies/selectors";
 import { MenuItem } from "./MenuItem/MenuItem";
 import styles from "./Menu.module.css";

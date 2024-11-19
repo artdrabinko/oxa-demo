@@ -9,7 +9,7 @@ import {
   fetchMoviesFailureAction,
   fetchMoviesSuccessAction,
   fetchMovieSuccessAction,
-} from "./global-slice";
+} from "./root-slice";
 import { MovieService } from "@/services";
 
 function* fetchMovies() {
