@@ -42,8 +42,6 @@ export const Menu: React.FC<Props> = React.memo(() => {
     focusSelf();
   }, [focusSelf]);
 
-  console.log("selectedFilter", selectedFilter);
-
   return (
     <FocusProvider value={focusKey}>
       <nav ref={ref} className={styles.container}>

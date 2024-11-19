@@ -24,8 +24,6 @@ export const useDetailsPage = () => {
   const isFavorite = useAppSelector(isMovieFavorite(id as string));
 
   const handleFavoriteToggle = (movie: Movie) => {
-    console.log("isFavorite", isFavorite);
-    console.log("movie", movie);
     if (isFavorite) {
       dispatch(removeFavoriteAction(movie));
     } else if (movie) {

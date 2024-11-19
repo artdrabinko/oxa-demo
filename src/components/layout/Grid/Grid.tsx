@@ -45,7 +45,6 @@ export const Grid: React.FC<Props> = ({ items }) => {
       <section ref={ref} className={styles.grid}>
         <div className={styles.items}>
           {items.map((movie) => {
-            // Check if the movie is a favorite
             const isFavorite = favorites.some((fav) => fav.id == movie.id);
 
             return (
