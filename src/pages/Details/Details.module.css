@@ -13,3 +13,13 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.meta {
+  margin-left: 40px;
+  max-width: 700px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}

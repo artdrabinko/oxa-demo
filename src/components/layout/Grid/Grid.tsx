@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Movie } from "../../../types";
-import { FocusKeys } from "../../../core/constants";
-import { FocusableElement, useFocusable } from "../../../core/focus";
-import { Card } from "../../ui";
-import { links } from "../../../core/links";
-import { routes } from "../../../router";
-import { pageScrollService } from "../../../services";
+import { Movie } from "@/types";
+import { FocusableElement, FocusProvider } from "@/core/focus";
+import { useFocusable } from "@/core/focus";
+import { FocusKeys } from "@/core/constants";
+import { links } from "@/core/links";
+import { routes } from "@/router";
+import { pageScrollService } from "@/services";
+import { Card } from "@/components/ui";
 import styles from "./Grid.module.css";
-import { FocusContext } from "@noriginmedia/norigin-spatial-navigation";
 
 type Props = {
   items: Movie[];
@@ -19,6 +19,7 @@ export const Grid: React.FC<Props> = ({ items }) => {
   const { ref, focusKey } = useFocusable({
     focusKey: FocusKeys.Grid,
     saveLastFocusedChild: true,
+    focusable: !!items.length,
   });
 
   const navigation = useNavigate();
@@ -36,10 +37,10 @@ export const Grid: React.FC<Props> = ({ items }) => {
   }, []);
 
   return (
-    <FocusContext.Provider value={focusKey}>
+    <FocusProvider value={focusKey}>
       <section ref={ref} className={styles.grid}>
         <div className={styles.items}>
-          {items.map((movie, index) => (
+          {items.map((movie) => (
             <Card
               key={movie.id}
               id={movie.id}
@@ -52,6 +53,6 @@ export const Grid: React.FC<Props> = ({ items }) => {
           ))}
         </div>
       </section>
-    </FocusContext.Provider>
+    </FocusProvider>
   );
 };

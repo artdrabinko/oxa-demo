@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import cn from "clsx";
-import { FocusableElement, useFocusable } from "../../../core/focus";
-import { ID } from "../../../types";
+import { FocusableElement, useFocusable } from "@/core/focus";
+import { ID } from "@/types";
 import styles from "./Card.module.css";
 
 interface Props {

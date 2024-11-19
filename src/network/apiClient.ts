@@ -1,6 +1,7 @@
 import axios, { InternalAxiosRequestConfig, AxiosError } from "axios";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+const API_HOST = import.meta.env.VITE_API_HOST;
 
 // Create an Axios instance
 const apiClient = axios.create({

@@ -1,41 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDetailsPage } from "../../hooks";
-import { apiClient } from "../../network";
-import { BackdropImage, MoviePoster } from "../../components/ui";
+import { useDetailsPage } from "@/hooks";
+import { BackdropImage, MoviePoster } from "@/components/ui";
 import styles from "./Details.module.css";
 
-interface MovieDetails {
-  title: string;
-  overview: string;
-  release_date: string;
-  backdrop_path: string;
-  poster_path: string;
-  vote_average: number;
-  genres: { name: string }[];
-}
-
 export const Details: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [movie, setMovie] = useState<MovieDetails | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useDetailsPage();
-
-  const fetchMovieDetails = async () => {
-    try {
-      const response = await apiClient.get(`/movie/${id}`);
-      setMovie(response.data);
-    } catch (error) {
-      console.error("Error fetching movie details:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchMovieDetails();
-  }, [id]);
+  const { movie, loading, isFavorite, handleFavoriteToggle } = useDetailsPage();
 
   if (loading) {
     return <p>Loading movie details...</p>;
@@ -57,11 +25,9 @@ export const Details: React.FC = () => {
           alt={movie.title}
         />
 
-        {/* Movie Info */}
-        <div style={{ marginLeft: "40px", maxWidth: "700px" }}>
-          <h1 style={{ fontSize: "3rem", marginBottom: "20px" }}>
-            {movie.title}
-          </h1>
+        <div className={styles.meta}>
+          <h1 className={styles.title}>{movie.title}</h1>
+
           <p style={{ fontSize: "1.2rem", marginBottom: "10px" }}>
             <strong>Release Date:</strong> {movie.release_date}
           </p>
@@ -76,6 +42,22 @@ export const Details: React.FC = () => {
             {movie.overview}
           </p>
         </div>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          style={{
+            padding: "8px 15px",
+            fontSize: "2rem",
+            color: "black",
+            backgroundColor: "white",
+          }}
+          onClick={() => {
+            handleFavoriteToggle(movie);
+          }}
+        >
+          {isFavorite ? "Remove From Favorites" : "Add To Favorite"}
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,3 @@
-
-
-
-
 export enum Keycodes {
   KEY_ENTER = "KEY_ENTER",
   KEY_BACK = "KEY_BACK",
@@ -36,11 +32,7 @@ export enum Keycodes {
 
 export const FocusKeys = {
   Menu: "FocusKey:Menu",
-  Tabs: "FocusKey:Tabs",
-  Tab: "FocusKey:Tab",
-  Row: "FocusKey:Row",
   Grid: "FocusKey:Grid",
   Keyboard: "FocusKey:Keyboard",
   MenuItem: (id: string | number) => `FocusKey:MenuItem:${id}`,
-  ListItem: (id: string | number) => `FocusKey:ListItem:${id}`,
 };

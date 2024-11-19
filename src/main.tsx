@@ -1,17 +1,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./router";
+import { Provider as ReduxProvider } from "react-redux";
 import { init } from "@noriginmedia/norigin-spatial-navigation";
+import { router } from "@/router";
+import { rootStore } from "@/stores";
 import "./index.css";
 
-init({
-  debug: false,
-  visualDebug: false,
-});
+init();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ReduxProvider store={rootStore}>
+      <RouterProvider router={router} />
+    </ReduxProvider>
   </StrictMode>
 );
