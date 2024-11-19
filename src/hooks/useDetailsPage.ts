@@ -31,7 +31,7 @@ export const useDetailsPage = () => {
     }
   };
 
-  useNavigateBack();
+  const navigateBack = useNavigateBack();
 
   useEffect(() => {
     if (id) {
@@ -45,5 +45,6 @@ export const useDetailsPage = () => {
     movie,
     isFavorite,
     handleFavoriteToggle,
+    navigateBack,
   };
 };

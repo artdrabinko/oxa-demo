@@ -1,9 +1,21 @@
 import { useDetailsPage } from "@/hooks";
-import { BackdropImage, MoviePoster } from "@/components/ui";
+import { BackdropImage, Button, MoviePoster } from "@/components/ui";
 import styles from "./Details.module.css";
+import { FocusProvider } from "@/core/focus";
+import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { useEffect } from "react";
 
 export const Details: React.FC = () => {
-  const { movie, loading, isFavorite, handleFavoriteToggle } = useDetailsPage();
+  const { movie, loading, isFavorite, handleFavoriteToggle, navigateBack } =
+    useDetailsPage();
+
+  const { ref, focusKey, focusSelf } = useFocusable({
+    preferredChildFocusKey: "back",
+  });
+
+  useEffect(() => {
+    focusSelf();
+  }, []);
 
   if (loading) {
     return <p>Loading movie details...</p>;
@@ -14,52 +26,52 @@ export const Details: React.FC = () => {
   }
 
   return (
-    <div className={styles.page}>
-      <BackdropImage
-        url={`url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}
-      />
-
-      <div className={styles.details}>
-        <MoviePoster
-          url={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-          alt={movie.title}
-          isFavorite={isFavorite}
+    <FocusProvider value={focusKey}>
+      <div ref={ref} className={styles.page}>
+        <BackdropImage
+          url={`url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}
         />
 
-        <div className={styles.meta}>
-          <h1 className={styles.title}>{movie.title}</h1>
+        <div className={styles.details}>
+          <MoviePoster
+            url={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            alt={movie.title}
+            isFavorite={isFavorite}
+          />
 
-          <p style={{ fontSize: "1.2rem", marginBottom: "10px" }}>
-            <strong>Release Date:</strong> {movie.release_date}
-          </p>
-          <p style={{ fontSize: "1.2rem", marginBottom: "10px" }}>
-            <strong>Rating:</strong> {movie.vote_average}/10
-          </p>
-          <p style={{ fontSize: "1.2rem", marginBottom: "20px" }}>
-            <strong>Genres:</strong>{" "}
-            {movie.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-            {movie.overview}
-          </p>
+          <div className={styles.meta}>
+            <h1 className={styles.title}>{movie.title}</h1>
+
+            <p className={styles.releaseDate}>
+              <strong>Release Date:</strong> {movie.release_date}
+            </p>
+            <p className={styles.rating}>
+              <strong>Rating:</strong> {movie.vote_average}/10
+            </p>
+            <p className={styles.genres}>
+              <strong>Genres:</strong>{" "}
+              {movie.genres.map((genre) => genre.name).join(", ")}
+            </p>
+            <p className={styles.overview}>{movie.overview}</p>
+          </div>
+        </div>
+
+        <div className={styles.actions}>
+          <Button focusKey="back" onEnterPress={navigateBack}>
+            <label>Back</label>
+          </Button>
+
+          <Button
+            onEnterPress={() => {
+              handleFavoriteToggle(movie);
+            }}
+          >
+            <label>
+              {isFavorite ? "Remove From Favorites" : "Add To Favorite"}
+            </label>
+          </Button>
         </div>
       </div>
-
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button
-          style={{
-            padding: "8px 15px",
-            fontSize: "2rem",
-            color: "black",
-            backgroundColor: "white",
-          }}
-          onClick={() => {
-            handleFavoriteToggle(movie);
-          }}
-        >
-          {isFavorite ? "Remove From Favorites" : "Add To Favorite"}
-        </button>
-      </div>
-    </div>
+    </FocusProvider>
   );
 };

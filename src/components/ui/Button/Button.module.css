@@ -1,0 +1,22 @@
+.button {
+  padding: 12px 23px;
+  color: black;
+  border-radius: 40px;
+  border: 3px solid transparent;
+  background: rgb(23, 193, 250);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.button.focused {
+  border: 3px solid white;
+  background: $onPrimary;
+}
+
+.button:hover {
+  border: 3px solid gray;
+}

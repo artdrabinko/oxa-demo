@@ -23,3 +23,30 @@
   font-size: 3rem;
   margin-bottom: 20px;
 }
+
+.releaseDate {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.rating {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.genres {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.overview {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+}
